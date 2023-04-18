@@ -29,7 +29,7 @@ public:
     clientTitle: BigBlueButton
     appName: BigBlueButton HTML5 Client
     bbbServerVersion: HTML5_FULL_BBB_VERSION
-    displayBbbServerVersion: true
+    displayBbbServerVersion: false
     copyright: '©2023 BigBlueButton Inc.'
     html5ClientBuild: HTML5_CLIENT_VERSION
     helpLink: https://bigbluebutton.org/html5/
@@ -54,20 +54,21 @@ public:
     allowDefaultLogoutUrl: true
     allowUserLookup: false
     dynamicGuestPolicy: true
-    enableGuestLobbyMessage: true
+    enableGuestLobbyMessage: false
     alwaysShowWaitingRoomUI: true
     enableLimitOfViewersInWebcam: false
-    enableMultipleCameras: true
+    enableMultipleCameras: false
     # Allow users to open webcam video modal/preview when video is already
     # active. This also allows to change virtual backgrounds without
     # restarting webcam.
     enableWebcamSelectorButton: true
     enableTalkingIndicator: true
     mirrorOwnWebcam: false
-    viewersInWebcam: 8
+    # was 8
+    viewersInWebcam: 1
     ipv4FallbackDomain: ''
     allowLogout: true
-    allowFullscreen: true
+    allowFullscreen: false
     preloadNextSlides: 2
     warnAboutUnsavedContentOnMeetingEnd: false
     mutedAlert:
@@ -77,7 +78,7 @@ public:
       duration: 4000
     remainingTimeThreshold: 30
     remainingTimeAlertThreshold: 1
-    enableDebugWindow: true
+    enableDebugWindow: false
     # Warning: increasing the limit of breakout rooms per meeting
     # can generate excessive overhead to the server. We recommend
     # this value to be kept under 16.
@@ -95,7 +96,7 @@ public:
     # If not set, default value is true.
     showAudioFilters: true
     raiseHandActionButton:
-      enabled: true
+      enabled: false
     # If enabled, before joining microphone the client will perform a trickle
     # ICE against Kurento and use the information about successfull
     # candidate-pairs to filter out local candidates in SIP.js's SDP.
@@ -108,7 +109,7 @@ public:
     #
     # Shows stats about download and upload rates, audio jitter, lost packets
     # and turn information
-    enableNetworkStats: true
+    enableNetworkStats: false
     # Enable the button to allow users to copy network stats to clipboard
     enableCopyNetworkStatsButton: true
     # where should client settings be stored? if you run a single BBB server or
@@ -120,18 +121,19 @@ public:
     userSettingsStorage: session
     defaultSettings:
       application:
-        animations: true
+        animations: false
         chatAudioAlerts: false
         chatPushAlerts: false
         userJoinAudioAlerts: false
         userJoinPushAlerts: false
         userLeaveAudioAlerts: false
         userLeavePushAlerts: false
-        raiseHandAudioAlerts: true
-        raiseHandPushAlerts: true
-        guestWaitingAudioAlerts: true
-        guestWaitingPushAlerts: true
-        paginationEnabled: true
+        raiseHandAudioAlerts: false
+        raiseHandPushAlerts: false
+        guestWaitingAudioAlerts: false
+        guestWaitingPushAlerts: false
+	# was true
+        paginationEnabled: false
         pushLayoutToEveryone: false
         # fallbackLocale: if the locale the client is loaded in does not have a
         # translation a string, it will use the translation from the locale
@@ -143,7 +145,7 @@ public:
         # Users can individually set their preferred locale through Settings,
         # but on first page load overrideLocale will trump the browser's
         # preferred locale
-        overrideLocale: null
+        overrideLocale: ru
         #Audio constraints for microphone. Use this to control browser's
         #filters, such as AGC (Auto Gain Control) , Echo Cancellation,
         #Noise Supression, etc.
@@ -168,7 +170,7 @@ public:
         outputDeviceId: undefined
       dataSaving:
         viewParticipantsWebcams: true
-        viewScreenshare: true
+        viewScreenshare: false
     shortcuts:
       openOptions:
         accesskey: O
@@ -204,9 +206,10 @@ public:
         accesskey: K
         descId: openDebugWindow
     branding:
-      displayBrandingArea: true
+      # was true
+      displayBrandingArea: false
     connectionTimeout: 60000
-    showHelpButton: true
+    showHelpButton: false
     effectiveConnection:
       - critical
       - danger
@@ -219,7 +222,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://bbb.mc21.ru/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
@@ -333,7 +336,7 @@ public:
           width: 1280
           height: 720
           frameRate: 30
-    enableScreensharing: true
+    enableScreensharing: false
     enableVideo: true
     enableVideoMenu: true
     enableVideoPin: true
@@ -441,13 +444,13 @@ public:
     enabled: false
     syncInterval: 60000
   poll:
-    enabled: true
+    enabled: false
     maxCustom: 5
     allowDragAndDropFile: false
     maxTypedAnswerLength: 45
     chatMessage: true
   captions:
-    enabled: true
+    enabled: false
     id: captions
     dictation: false
     background: '#000000'
@@ -484,12 +487,12 @@ public:
       enabled: true
     moderatorChatEmphasized: true
   notes:
-    enabled: true
+    enabled: false
     id: notes
   layout:
     autoSwapLayout: false
-    hidePresentation: false
-    showParticipantsOnLogin: true
+    hidePresentation: true
+    showParticipantsOnLogin: false
   pads:
     url: ETHERPAD_HOST
     cookie:
@@ -584,7 +587,7 @@ public:
     # SDP semantics: plan-b|unified-plan
     sdpSemantics: 'unified-plan'
   stats:
-    enabled: true
+    enabled: false
     interval: 10000
     timeout: 30000
     log: true
@@ -609,7 +612,7 @@ public:
       - critical
     help: STATS_HELP_URL
   presentation:
-    allowDownloadable: true
+    allowDownloadable: false
     panZoomThrottle: 32
     restoreOnUpdate: false
     oldMinimizeButton: false
@@ -657,7 +660,7 @@ public:
       - extension: .png
         mime: image/png
   selectRandomUser:
-    enabled: true
+    enabled: false
     countdown: false
   user:
     role_moderator: MODERATOR
@@ -775,7 +778,7 @@ public:
       - board.jpg
 private:
   analytics:
-    includeChat: true
+    includeChat: false
   app:
     host: 127.0.0.1
     localesUrl: /locale-list

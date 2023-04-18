@@ -127,13 +127,20 @@ const Reconnecting = styled.div`
 const VideoContainer = styled.div`
   width: 100%;
   height: 100%;
+  text-align: center;
 `;
 
 const Video = styled.video`
   position: relative;
-  height: 100%;
+  /*height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: contain;*/
+  height: 100%;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+
   background-color: ${colorBlack};
 
   ${({ mirrored }) => mirrored && `
