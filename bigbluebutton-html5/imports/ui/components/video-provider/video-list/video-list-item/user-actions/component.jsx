@@ -85,37 +85,12 @@ const UserActions = (props) => {
 
   return (
     <Styled.MenuWrapper>
-      {enableVideoMenu && getAvailableActions().length >= 1
-        ? (
-          <BBBMenu
-            trigger={(
-              <Styled.DropdownTrigger
+	<Styled.DropdownTrigger
                 tabIndex={0}
                 data-test="dropdownWebcamButton"
               >
                 {name}
-              </Styled.DropdownTrigger>
-            )}
-            actions={getAvailableActions()}
-            opts={{
-              id: 'default-dropdown-menu',
-              keepMounted: true,
-              transitionDuration: 0,
-              elevation: 3,
-              getContentAnchorEl: null,
-              fullwidth: 'true',
-              anchorOrigin: { vertical: 'bottom', horizontal: isRTL ? 'right' : 'left' },
-              transformOrigin: { vertical: 'top', horizontal: isRTL ? 'right' : 'left' },
-            }}
-          />
-        )
-        : (
-          <Styled.Dropdown isFirefox={isFirefox}>
-            <Styled.UserName noMenu={numOfStreams < 3}>
-              {name}
-            </Styled.UserName>
-          </Styled.Dropdown>
-        )}
+         </Styled.DropdownTrigger>
     </Styled.MenuWrapper>
   );
 };

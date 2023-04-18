@@ -9,23 +9,13 @@ const DropdownTrigger = styled(DivElipsis)`
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 1px;
   color: ${colorOffWhite};
-  padding: 0 1rem 0 .5rem !important;
-  font-size: 80%;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem !important;
+  font-size: 100%;
   cursor: pointer;
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &::after {
-    content: "\\203a";
-    position: absolute;
-    transform: rotate(90deg);
-    top: 45%;
-    width: 0;
-    line-height: 0;
-    right: .45rem;
-  }
 `;
 
 const UserName = styled(TextElipsis)`
