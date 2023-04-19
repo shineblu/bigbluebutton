@@ -26,7 +26,7 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
+    clientTitle: 'Дистанционные консультации - МЦ21 Век'
     appName: BigBlueButton HTML5 Client
     bbbServerVersion: HTML5_FULL_BBB_VERSION
     displayBbbServerVersion: false
@@ -132,7 +132,7 @@ public:
         raiseHandPushAlerts: false
         guestWaitingAudioAlerts: false
         guestWaitingPushAlerts: false
-	# was true
+        # was true
         paginationEnabled: false
         pushLayoutToEveryone: false
         # fallbackLocale: if the locale the client is loaded in does not have a

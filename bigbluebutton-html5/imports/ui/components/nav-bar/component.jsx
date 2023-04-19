@@ -240,7 +240,6 @@ class NavBar extends Component {
           </Styled.Center>
           <Styled.Right>
             {ConnectionStatusService.isEnabled() ? <ConnectionStatusButton /> : null}
-            <SettingsDropdownContainer amIModerator={amIModerator} />
           </Styled.Right>
         </Styled.Top>
         <Styled.Bottom>

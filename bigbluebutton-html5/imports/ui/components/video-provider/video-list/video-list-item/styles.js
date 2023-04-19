@@ -153,9 +153,9 @@ const Video = styled.video`
     transform: scale(-1, 1);
   `}
 
-  /*${({ unhealthyStream }) => unhealthyStream && `
+  ${({ unhealthyStream }) => unhealthyStream && `
     filter: grayscale(50%) opacity(50%);
-  `} */
+  `} 
 `;
 
 const TopBar = styled.div`

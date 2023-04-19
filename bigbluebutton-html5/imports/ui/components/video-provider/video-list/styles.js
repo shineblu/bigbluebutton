@@ -66,11 +66,11 @@ const VideoListItem = styled.div`
   ${({ isOwnWebcam }) => isOwnWebcam && `
      position: absolute;
      z-index: 999;
-     left: 10px;
-     top: 10px;
-     width: 100px;
+     left: 20px;
+     top: 20px;
+     width: 130px;
      height: 100px;
-     border: 1px solid gray;
+     border: 2px solid gray;
   `}
 
   ${({ focused }) => focused && `
