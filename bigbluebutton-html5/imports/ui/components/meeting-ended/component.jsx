@@ -133,12 +133,14 @@ class MeetingEnded extends PureComponent {
       dispatched: false,
     };
 
+    logger.info({ logCode: 'debug', extraInfo: 'Meeting ended start' }, 'Meeting ended component');
+
     const user = Users.findOne({ userId: Auth.userID });
     if (user) {
       this.localUserRole = user.role;
     }
 
-    const meeting = Meetings.findOne({ id: user.meetingID });
+    const meeting = Meetings.findOne({ id: user?.meetingID });
     if (meeting) {
       this.endWhenNoModeratorMinutes = meeting.durationProps.endWhenNoModeratorDelayInMinutes;
 
@@ -163,6 +165,9 @@ class MeetingEnded extends PureComponent {
     this.props.callback().finally(() => {
       Meteor.disconnect();
     });
+
+    logger.info({ logCode: 'debug', extraInfo: 'Meeting ended exit' }, 'Meeting ended component exit');
+    logoutRouteHandler();
   }
 
   setSelectedStar(starNumber) {
@@ -262,7 +267,9 @@ class MeetingEnded extends PureComponent {
 
     const logMessage = ejectedReason === 'user_requested_eject_reason' ? 'User removed from the meeting' : 'Meeting ended component, no feedback configured';
     logger.info({ logCode: 'meeting_ended_code', extraInfo: { endedCode: code, reason: ejectedReason } }, logMessage);
-
+    
+    return false;
+    
     return (
       <Styled.Parent>
         <Styled.Modal>
@@ -370,7 +377,7 @@ class MeetingEnded extends PureComponent {
   }
 
   render() {
-    if (this.shouldShowFeedback()) return this.renderFeedback();
+    //if (this.shouldShowFeedback()) return this.renderFeedback();
     return this.renderNoFeedback();
   }
 }

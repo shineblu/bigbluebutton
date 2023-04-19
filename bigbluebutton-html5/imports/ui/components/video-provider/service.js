@@ -632,6 +632,12 @@ class VideoService {
     return isOwnWebcam && isEnabledMirroring;
   }
 
+  isOwnWebcam(userId = null) {
+    // only true if setting defined and video ids match
+    const isOwnWebcam = userId ? Auth.userID === userId : true;
+    return isOwnWebcam;
+  }
+
   isPinEnabled() {
     return PIN_WEBCAM;
   }
@@ -1010,6 +1016,7 @@ export default {
   getUserParameterProfile: () => videoService.getUserParameterProfile(),
   isMultipleCamerasEnabled: () => videoService.isMultipleCamerasEnabled(),
   mirrorOwnWebcam: userId => videoService.mirrorOwnWebcam(userId),
+  isOwnWebcam: userId => videoService.isOwnWebcam(userId),
   hasCapReached: () => videoService.hasCapReached(),
   onBeforeUnload: () => videoService.onBeforeUnload(),
   notify: message => notify(message, 'error', 'video'),

@@ -63,6 +63,16 @@ const VideoListItem = styled.div`
   width: 100%;
   max-height: 100%;
 
+  ${({ isOwnWebcam }) => isOwnWebcam && `
+     position: absolute;
+     z-index: 999;
+     left: 20px;
+     top: 20px;
+     width: 130px;
+     height: 100px;
+     border: 2px solid gray;
+  `}
+
   ${({ focused }) => focused && `
     grid-column: 1 / span 2;
     grid-row: 1 / span 2;

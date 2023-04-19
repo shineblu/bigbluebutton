@@ -4,6 +4,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import Styled from './styles';
 import ActionsDropdown from './actions-dropdown/container';
 import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/screenshare/container';
+import LeaveButtonContainer from '/imports/ui/components/actions-bar/leave/container';
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
@@ -45,26 +46,7 @@ class ActionsBar extends PureComponent {
           }
         }
       >
-        <Styled.Left>
-          <ActionsDropdown {...{
-            amIPresenter,
-            amIModerator,
-            isPollingEnabled,
-            isSelectRandomUserEnabled,
-            allowExternalVideo,
-            handleTakePresenter,
-            intl,
-            isSharingVideo,
-            stopExternalVideoShare,
-            isMeteorConnected,
-          }}
-          />
-          {isCaptionsAvailable
-            ? (
-              <CaptionsButtonContainer {...{ intl }} />
-            )
-            : null}
-        </Styled.Left>
+        <Styled.Left />
         <Styled.Center>
           <AudioControlsContainer />
           {enableVideo
@@ -72,6 +54,10 @@ class ActionsBar extends PureComponent {
               <JoinVideoOptionsContainer />
             )
             : null}
+	  <LeaveButtonContainer {...{
+	    amIModerator
+	  }}
+    	  />
           <ScreenshareButtonContainer {...{
             amIPresenter,
             isMeteorConnected,

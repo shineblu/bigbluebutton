@@ -113,7 +113,7 @@ const Reconnecting = styled.div`
   background-color: transparent;
   color: ${colorWhite};
 
-  &::before {
+  /*&::before {
     font-family: 'bbb-icons' !important;
     content: "\\e949";
     /* ascii code for the ellipsis character */
@@ -121,19 +121,32 @@ const Reconnecting = styled.div`
     ${({ animations }) => animations && css`
       animation: ${rotate360} 2s infinite linear;
     `}
-  }
+  }*/
 `;
 
 const VideoContainer = styled.div`
   width: 100%;
   height: 100%;
+  text-align: center;
+  color: 'red';
+
+   ${({ isOwnWebcam }) => isOwnWebcam && `
+	color: 'green';
+  `}    
 `;
 
 const Video = styled.video`
   position: relative;
-  height: 100%;
-  width: 100%;
+  /*height: 100%;
+  width: 100%; */
   object-fit: contain;
+  height: 100%;
+  width: auto;
+  /* 
+  border-radius: 50%;
+  object-fit: cover; 
+  aspect-ratio: 1 / 1;  */
+
   background-color: ${colorBlack};
 
   ${({ mirrored }) => mirrored && `
@@ -142,7 +155,7 @@ const Video = styled.video`
 
   ${({ unhealthyStream }) => unhealthyStream && `
     filter: grayscale(50%) opacity(50%);
-  `}
+  `} 
 `;
 
 const TopBar = styled.div`
@@ -162,7 +175,6 @@ const BottomBar = styled.div`
   z-index: 1;
   bottom: 0;
   padding: 1px 7px;
-  justify-content: space-between;
 `;
 
 export default {

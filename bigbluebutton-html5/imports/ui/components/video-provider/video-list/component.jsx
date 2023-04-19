@@ -190,6 +190,10 @@ class VideoList extends Component {
       layoutContextDispatch,
     } = this.props;
     let numItems = streams.length;
+    if (numItems > 1) {
+    	numItems--;
+    }
+    
     if (numItems < 1 || !this.canvas || !this.grid) {
       return;
     }
@@ -307,15 +311,20 @@ class VideoList extends Component {
     } = this.props;
     const { focusedId } = this.state;
     const numOfStreams = streams.length;
-
+    
     return streams.map((vs) => {
       const { stream, userId, name } = vs;
       const isFocused = focusedId === stream && numOfStreams > 2;
+      var isOwnWebcam = VideoService.isOwnWebcam(userId);
+      if (numOfStreams <= 1) {
+	  isOwnWebcam = false
+      }
 
       return (
         <Styled.VideoListItem
           key={stream}
           focused={focusedId === stream && numOfStreams > 2}
+	  isOwnWebcam={isOwnWebcam}
           data-test="webcamVideoItem"
         >
           <VideoListItemContainer

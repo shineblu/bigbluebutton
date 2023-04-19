@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { withModalMounter } from '/imports/ui/components/common/modal/service';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import { makeCall } from '/imports/ui/services/api';
-import AboutContainer from '/imports/ui/components/about/container';
-import SettingsMenuContainer from '/imports/ui/components/settings/container';
+// import AboutContainer from '/imports/ui/components/about/container';
+// import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import BBBMenu from '/imports/ui/components/common/menu/component';
-import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
+// import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import FullscreenService from '/imports/ui/components/common/fullscreen-button/service';
 import { colorDanger } from '/imports/ui/stylesheets/styled-components/palette';
@@ -39,10 +39,10 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.leaveSessionLabel',
     description: 'Leave session button label',
   },
-  fullscreenDesc: {
+  /* fullscreenDesc: {
     id: 'app.navBar.settingsDropdown.fullscreenDesc',
     description: 'Describes fullscreen option',
-  },
+  }, */
   settingsDesc: {
     id: 'app.navBar.settingsDropdown.settingsDesc',
     description: 'Describes settings option',
@@ -154,12 +154,12 @@ class SettingsDropdown extends PureComponent {
     if (noIOSFullscreen || !ALLOW_FULLSCREEN) return null;
 
     let fullscreenLabel = intl.formatMessage(intlMessages.fullscreenLabel);
-    let fullscreenDesc = intl.formatMessage(intlMessages.fullscreenDesc);
+    // let fullscreenDesc = intl.formatMessage(intlMessages.fullscreenDesc);
     let fullscreenIcon = 'fullscreen';
 
     if (isFullscreen) {
       fullscreenLabel = intl.formatMessage(intlMessages.exitFullscreenLabel);
-      fullscreenDesc = intl.formatMessage(intlMessages.exitFullscreenDesc);
+      // fullscreenDesc = intl.formatMessage(intlMessages.exitFullscreenDesc);
       fullscreenIcon = 'exit_fullscreen';
     }
 
@@ -200,6 +200,7 @@ class SettingsDropdown extends PureComponent {
 
     this.getFullscreenItem(this.menuItems);
 
+    /*
     this.menuItems.push(
       {
         key: 'list-item-settings',
@@ -217,6 +218,7 @@ class SettingsDropdown extends PureComponent {
         onClick: () => mountModal(<AboutContainer />),
       },
     );
+    */
 
     if (helpButton) {
       this.menuItems.push(
@@ -231,7 +233,7 @@ class SettingsDropdown extends PureComponent {
       );
     }
 
-    this.menuItems.push(
+    /* this.menuItems.push(
       {
         key: 'list-item-shortcuts',
         icon: 'shortcuts',
@@ -240,14 +242,14 @@ class SettingsDropdown extends PureComponent {
         onClick: () => mountModal(<ShortcutHelpComponent />),
         divider: true,
       },
-    );
+    ); */
 
     if (allowedToEndMeeting && isMeteorConnected) {
       this.menuItems.push(
         {
           key: 'list-item-end-meeting',
           icon: 'application',
-          label: intl.formatMessage(intlMessages.endMeetingLabel),
+          label: 'Завершить консультацию',
           // description: intl.formatMessage(intlMessages.endMeetingDesc),
           onClick: () => mountModal(<EndMeetingConfirmationContainer />),
         },
@@ -262,7 +264,7 @@ class SettingsDropdown extends PureComponent {
           key: 'list-item-logout',
           dataTest: 'logout',
           icon: 'logout',
-          label: intl.formatMessage(intlMessages.leaveSessionLabel),
+          label: 'Покинуть консультацию',
           // description: intl.formatMessage(intlMessages.leaveSessionDesc),
           customStyles,
           onClick: () => this.leaveSession(),
@@ -304,12 +306,12 @@ class SettingsDropdown extends PureComponent {
         )}
         actions={this.renderMenuItems()}
         opts={{
-          id: "default-dropdown-menu",
+          id: 'default-dropdown-menu',
           keepMounted: true,
           transitionDuration: 0,
           elevation: 3,
           getContentAnchorEl: null,
-          fullwidth: "true",
+          fullwidth: 'true',
           anchorOrigin: { vertical: 'bottom', horizontal: isRTL ? 'left' : 'right' },
           transformorigin: { vertical: 'top', horizontal: isRTL ? 'left' : 'right' },
         }}

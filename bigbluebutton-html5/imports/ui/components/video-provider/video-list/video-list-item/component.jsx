@@ -17,13 +17,12 @@ import Styled from './styles';
 const VideoListItem = (props) => {
   const {
     name, voiceUser, isFullscreenContext, layoutContextDispatch, user, onHandleVideoFocus,
-    cameraId, numOfStreams, focused, onVideoItemMount, onVideoItemUnmount, isRTL,
+    cameraId, numOfStreams, focused, onVideoItemMount, onVideoItemUnmount, isRTL, isOwnWebcam
   } = props;
 
   const [videoIsReady, setVideoIsReady] = useState(false);
   const [isStreamHealthy, setIsStreamHealthy] = useState(false);
   const [isMirrored, setIsMirrored] = useState(VideoService.mirrorOwnWebcam(user?.userId));
-
   const videoTag = useRef();
   const videoContainer = useRef();
 
@@ -116,7 +115,10 @@ const VideoListItem = (props) => {
                   />
                 </Styled.TopBar>
                 <Styled.BottomBar>
-                  <UserActions
+                  <UserStatus
+                    voiceUser={voiceUser}
+                  />
+		  <UserActions
                     name={name}
                     user={user}
                     cameraId={cameraId}
@@ -125,9 +127,6 @@ const VideoListItem = (props) => {
                     focused={focused}
                     onHandleMirror={() => setIsMirrored((value) => !value)}
                     isRTL={isRTL}
-                  />
-                  <UserStatus
-                    voiceUser={voiceUser}
                   />
                 </Styled.BottomBar>
               </>
@@ -143,11 +142,11 @@ const VideoListItem = (props) => {
             )
         }
 
-      <Styled.VideoContainer>
+      <Styled.VideoContainer isOwnWebcam={isOwnWebcam} data-test={isOwnWebcam ? 'ownWebcam' : 'anotherWebcam'}>
         <Styled.Video
           muted
           mirrored={isMirrored}
-          unhealthyStream={shouldRenderReconnect}
+	  unhealthyStream={shouldRenderReconnect}
           data-test={isMirrored ? 'mirroredVideoContainer' : 'videoContainer'}
           ref={videoTag}
           autoPlay
@@ -189,4 +188,5 @@ VideoListItem.propTypes = {
     joined: PropTypes.bool.isRequired,
   }).isRequired,
   focused: PropTypes.bool.isRequired,
+  isOwnWebcam: PropTypes.bool.isRequired
 };
