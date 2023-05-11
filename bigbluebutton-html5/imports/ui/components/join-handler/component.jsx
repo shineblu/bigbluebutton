@@ -8,6 +8,7 @@ import { makeCall } from '/imports/ui/services/api';
 import logger from '/imports/startup/client/logger';
 import LoadingScreen from '/imports/ui/components/common/loading-screen/component';
 import { CurrentUser } from '/imports/api/users';
+import Storage from '/imports/ui/services/storage/session';
 
 const propTypes = {
   children: PropTypes.element.isRequired,
@@ -173,6 +174,12 @@ class JoinHandler extends Component {
       });
     };
 
+
+    const setAttachFilesUrl = (url) => {
+      Storage.setItem('attachFilesUrl', url);
+    };
+
+
     const setBannerProps = (resp) => {
       Session.set('bannerText', resp.bannerText);
       Session.set('bannerColor', resp.bannerColor);
@@ -186,6 +193,7 @@ class JoinHandler extends Component {
 
     setLogoutURL(response);
     logUserInfo();
+    setAttachFilesUrl("");
 
     if (response.returncode !== 'FAILED') {
       await setAuth(response);
@@ -193,6 +201,19 @@ class JoinHandler extends Component {
       setBannerProps(response);
       setLogoURL(response);
       setModOnlyMessage(response);
+
+      // set custom client properties
+      if (response.customdata && response.customdata.length) {
+         response.customdata.map((customParam) => {
+	    Object.keys(customParam).map((key, i) => {
+		if (key == "attachFilesUrl") {
+		    // save it to storage
+		    setAttachFilesUrl(customParam[key]);
+		}
+	    });
+        });
+      }
+
 
       Tracker.autorun(async (cd) => {
         const user = CurrentUser

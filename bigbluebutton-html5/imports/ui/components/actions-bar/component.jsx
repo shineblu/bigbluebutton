@@ -5,9 +5,11 @@ import Styled from './styles';
 import ActionsDropdown from './actions-dropdown/container';
 import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/screenshare/container';
 import LeaveButtonContainer from '/imports/ui/components/actions-bar/leave/container';
+import AttachButtonContainer from '/imports/ui/components/actions-bar/attach/container';
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
+import Storage from '/imports/ui/services/storage/session';
 
 class ActionsBar extends PureComponent {
   render() {
@@ -38,6 +40,9 @@ class ActionsBar extends PureComponent {
       isOldMinimizeButtonEnabled,
     } = this.props;
 
+    // check if Storage has non-empty attachFilesUrl
+    const attachFilesUrl = Storage.getItem('attachFilesUrl');
+
     return (
       <Styled.ActionsBar
         style={
@@ -54,6 +59,14 @@ class ActionsBar extends PureComponent {
               <JoinVideoOptionsContainer />
             )
             : null}
+          {attachFilesUrl && !amIModerator
+            ? (
+		<AttachButtonContainer {...{
+		    amIModerator
+		}}
+    		/>
+	    )
+	  : null}
 	  <LeaveButtonContainer {...{
 	    amIModerator
 	  }}

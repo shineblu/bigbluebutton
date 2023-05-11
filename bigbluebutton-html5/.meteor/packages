@@ -22,4 +22,3 @@ check@1.3.2
 rocketchat:streamer
 meteortesting:mocha
 lmieulet:meteor-coverage
-standard-minifier-js

@@ -18,11 +18,10 @@ const Title = styled.h3`
   padding-bottom: ${mdPaddingX};
 `;
 
-const LeaveButton = styled(Button)`
+const AttachButton = styled(Button)`
   span {
-      margin-left: 30px;
-      background-color: red;
-      color: white;
+      background-color: silver;
+      color: black;
   }
 
   ${({ ghost }) => ghost && `
@@ -36,5 +35,6 @@ const LeaveButton = styled(Button)`
 
 export default {
   Title,
-  LeaveButton,
+  AttachButton,
 };
+
