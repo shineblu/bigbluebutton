@@ -42,6 +42,7 @@ class ActionsBar extends PureComponent {
 
     // check if Storage has non-empty attachFilesUrl
     const attachFilesUrl = Storage.getItem('attachFilesUrl');
+    const screenshare = Storage.getItem('screenshare');
 
     return (
       <Styled.ActionsBar
@@ -71,11 +72,15 @@ class ActionsBar extends PureComponent {
 	    amIModerator
 	  }}
     	  />
-          <ScreenshareButtonContainer {...{
-            amIPresenter,
-            isMeteorConnected,
-          }}
-          />
+          {screenshare && amIModerator
+            ? (
+        	<ScreenshareButtonContainer {...{
+        	    amIPresenter,
+        	    isMeteorConnected,
+        	}}
+		/>
+	    )
+	  : null}
         </Styled.Center>
         <Styled.Right>
           {!isOldMinimizeButtonEnabled ||

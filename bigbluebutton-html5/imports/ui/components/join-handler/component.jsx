@@ -179,6 +179,9 @@ class JoinHandler extends Component {
       Storage.setItem('attachFilesUrl', url);
     };
 
+    const setScreenshare = (screenshare) => {
+      Storage.setItem('screenshare', screenshare);
+    };
 
     const setBannerProps = (resp) => {
       Session.set('bannerText', resp.bannerText);
@@ -194,6 +197,7 @@ class JoinHandler extends Component {
     setLogoutURL(response);
     logUserInfo();
     setAttachFilesUrl("");
+    setScreenshare(false);
 
     if (response.returncode !== 'FAILED') {
       await setAuth(response);
@@ -207,8 +211,13 @@ class JoinHandler extends Component {
          response.customdata.map((customParam) => {
 	    Object.keys(customParam).map((key, i) => {
 		if (key == "attachFilesUrl") {
-		    // save it to storage
+		    // save it to session storage
 		    setAttachFilesUrl(customParam[key]);
+		}
+
+		if (key == "screenshare") {
+		    // save it to session storage
+		    setScreenshare(customParam[key]);
 		}
 	    });
         });

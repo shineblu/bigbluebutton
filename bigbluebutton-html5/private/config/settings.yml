@@ -170,7 +170,7 @@ public:
         outputDeviceId: undefined
       dataSaving:
         viewParticipantsWebcams: true
-        viewScreenshare: false
+        viewScreenshare: true
     shortcuts:
       openOptions:
         accesskey: O
@@ -336,7 +336,7 @@ public:
           width: 1280
           height: 720
           frameRate: 30
-    enableScreensharing: false
+    enableScreensharing: true
     enableVideo: true
     enableVideoMenu: true
     enableVideoPin: true
